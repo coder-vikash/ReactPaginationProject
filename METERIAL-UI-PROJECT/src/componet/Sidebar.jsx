@@ -16,9 +16,9 @@ import Switch from "@mui/material/Switch";
 import ListItem from "@mui/material/ListItem";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 
-export default function NestedList() {
+export default function Sidebar() {
   const [open, setOpen] = React.useState(true);
-  const [checked, setChecked] = React.useState(["wifi"]);
+  const [checked, setChecked] = React.useState(["mode"]);
   const handleClick = () => {
     setOpen(!open);
   };
@@ -39,97 +39,99 @@ export default function NestedList() {
     <Box
       sx={{
         flex: 1,
+        display: { xs: "none", md: "block" },
       }}
     >
-      <List
-        sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-        subheader={
-          <ListSubheader component="div" id="nested-list-subheader">
-            Nested List Items
-          </ListSubheader>
-        }
-      >
-        <ListItemButton>
-          <ListItemIcon>
-            <SendIcon />
-          </ListItemIcon>
-          <ListItemText primary="Sent mail" />
-        </ListItemButton>
-        <ListItemButton>
-          <ListItemIcon>
-            <DraftsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Drafts" />
-        </ListItemButton>
-        <ListItemButton onClick={handleClick}>
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Inbox" />
-          {open ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemIcon>
-                <StarBorder />
-              </ListItemIcon>
-              <ListItemText primary="Starred" />
-            </ListItemButton>
-          </List>
-        </Collapse>
-      </List>
-      <List
-        sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-      >
-        <ListItemButton>
-          <ListItemIcon>
-            <SendIcon />
-          </ListItemIcon>
-          <ListItemText primary="Sent mail" />
-        </ListItemButton>
-        <ListItemButton>
-          <ListItemIcon>
-            <DraftsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Drafts" />
-        </ListItemButton>
-        <ListItemButton onClick={handleClick}>
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Inbox" />
-          {open ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemIcon>
-                <StarBorder />
-              </ListItemIcon>
-              <ListItemText primary="Starred" />
-            </ListItemButton>
-          </List>
-        </Collapse>
-        <ListItem>
-          <ListItemIcon>
-            <DarkModeIcon />
-          </ListItemIcon>
-          <ListItemText id="switch-list-label-bluetooth" primary="Bluetooth" />
-          <Switch
-            edge="end"
-            onChange={handleToggle("bluetooth")}
-            checked={checked.includes("bluetooth")}
-            slotProps={{
-              input: { "aria-labelledby": "switch-list-label-bluetooth" },
-            }}
-          />
-        </ListItem>
-      </List>
+      <Box sx={{ position: "fixed", top: 0, mt: "4rem" }}>
+        <List
+          sx={{
+            width: "100%",
+            maxWidth: 360,
+            bgcolor: "background.paper",
+          }}
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+        >
+          <ListItemButton>
+            <ListItemIcon>
+              <SendIcon />
+            </ListItemIcon>
+            <ListItemText primary="Sent mail" />
+          </ListItemButton>
+          <ListItemButton>
+            <ListItemIcon>
+              <DraftsIcon />
+            </ListItemIcon>
+            <ListItemText primary="Drafts" />
+          </ListItemButton>
+          <ListItemButton onClick={handleClick}>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Inbox" />
+            {open ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemButton sx={{ pl: 4 }}>
+                <ListItemIcon>
+                  <StarBorder />
+                </ListItemIcon>
+                <ListItemText primary="Starred" />
+              </ListItemButton>
+            </List>
+          </Collapse>
+        </List>
+        <List
+          sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+        >
+          <ListItemButton>
+            <ListItemIcon>
+              <SendIcon />
+            </ListItemIcon>
+            <ListItemText primary="Sent mail" />
+          </ListItemButton>
+          <ListItemButton>
+            <ListItemIcon>
+              <DraftsIcon />
+            </ListItemIcon>
+            <ListItemText primary="Drafts" />
+          </ListItemButton>
+          <ListItemButton onClick={handleClick}>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Inbox" />
+            {open ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemButton sx={{ pl: 4 }}>
+                <ListItemIcon>
+                  <StarBorder />
+                </ListItemIcon>
+                <ListItemText primary="Starred" />
+              </ListItemButton>
+            </List>
+          </Collapse>
+          <ListItem>
+            <ListItemIcon>
+              <DarkModeIcon />
+            </ListItemIcon>
+            <ListItemText id="switch-list-label-bluetooth" primary="mode" />
+            <Switch
+              edge="end"
+              onChange={handleToggle("bluetooth")}
+              checked={checked.includes("bluetooth")}
+              slotProps={{
+                input: { "aria-labelledby": "switch-list-label-bluetooth" },
+              }}
+            />
+          </ListItem>
+        </List>
+      </Box>
     </Box>
   );
 }

@@ -4,11 +4,13 @@ import Navbar from "./componet/Navbar";
 import { Feed } from "./componet/Feed";
 import { Right } from "./componet/Right";
 import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
 
 function App() {
   return (
     <>
       <Navbar />
+
       <Stack direction="row" spacing={2}>
         <Sidebar />
         <Feed />
